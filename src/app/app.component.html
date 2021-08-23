@@ -1,0 +1,76 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a
+      class="navbar-item"
+      [routerLink]="['/']"
+      routerLinkActive="router-link-active"
+    >
+      <img
+        src="https://bulma.io/images/bulma-logo.png"
+        width="112"
+        height="28"
+      />
+    </a>
+
+    <a
+      role="button"
+      class="navbar-burger"
+      aria-label="menu"
+      aria-expanded="false"
+      data-target="navbarBasicExample"
+    >
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a
+        class="navbar-item"
+        [routerLink]="['/test']"
+        routerLinkActive="router-link-active"
+      >
+        Home
+      </a>
+
+      <a class="navbar-item" [routerLink]="['/home']"> Documentation </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link"> More </a>
+
+        <div class="navbar-dropdown">
+          <a
+            class="navbar-item"
+            [routerLink]="['/menuone/menu1']"
+            routerLinkActive="router-link-active"
+          >
+            menu1
+          </a>
+          <a class="navbar-item" [routerLink]="['/menuone/menu2']"> menu2 </a>
+          <a class="navbar-item" [routerLink]="['/menuone/menu3']"> menu3 </a>
+          <hr class="navbar-divider" />
+          <a class="navbar-item" [routerLink]="['/menuone/menu4']"> menu4 </a>
+          <a class="navbar-item" [routerLink]="['/menuone/menu5']"> menu5 </a>
+          <a class="navbar-item" [routerLink]="['/menuone/menu6']"> menu6 </a>
+          <a class="navbar-item" [routerLink]="['/menuone/menu7']"> menu7 </a>
+          <a class="navbar-item" [routerLink]="['/menuone/menu8']"> menu8 </a>
+          <a class="navbar-item" [routerLink]="['/menuone/menu9']"> menu9 </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-primary">
+            <strong>Sign up</strong>
+          </a>
+          <a class="button is-light"> Log in </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>

@@ -1,0 +1,120 @@
+<div class="card" *ngIf="withTimeSearch$ | async as withTimeSearchData">
+  <div class="card-content">
+    <div class="content">
+      <div class="field">
+        <p class="control has-icons-left has-icons-right">
+          <input
+            class="input"
+            type="email"
+            placeholder="Email"
+            [(ngModel)]="search"
+            (keyup)="searchFunction()"
+          />
+          <span class="icon is-small is-left">
+            <i class="fa fa-search"></i>
+          </span>
+          <span class="icon is-small is-right">
+            <i class="fa fa-times-circle"></i>
+          </span>
+        </p>
+      </div>
+      <table class="table is-hoverable is-fullwidth">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>name</th>
+            <th>username</th>
+            <th>email</th>
+            <th>phone</th>
+            <th>adress</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of withTimeSearchData">
+            <td>
+              <label class="checkbox">
+                <input type="checkbox" [(ngModel)]="item.flag" />
+              </label>
+            </td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.username }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.phone }}</td>
+            <td>{{ item.adrs }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="buttons">
+        <button class="button is-primary" (click)="save(withTimeSearchData)">
+          save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-content">
+    <div class="content">
+      <table class="table is-hoverable is-fullwidth">
+        <thead>
+          <tr>
+            <th>name</th>
+            <th>username</th>
+            <th>email</th>
+            <th>phone</th>
+            <th>time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of withTime2$ | async">
+            <td>{{ item.name }}</td>
+            <td>{{ item.username }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.phone }}</td>
+            <td>{{ item.time }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-content">
+    <div class="content">
+      <table class="table is-hoverable is-fullwidth">
+        <thead>
+          <tr>
+            <th>name</th>
+            <th>username</th>
+            <th>email</th>
+            <th>phone</th>
+            <th>location</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of withTime2$ | async">
+            <td>{{ item.name }}</td>
+            <td>{{ item.username }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.phone }}</td>
+            <td>
+              <a
+                [href]="
+                  'https://www.google.co.in/maps/@' +
+                  item.address.geo.lat +
+                  ',' +
+                  item.address.geo.lng +
+                  ',15z'
+                "
+              >
+                location
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

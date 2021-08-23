@@ -1,0 +1,34 @@
+<p>home works!</p>
+
+<article class="panel is-danger">
+  <p class="panel-heading">Danger</p>
+  <!-- <p class="panel-tabs">
+    <a class="is-active">All</a>
+    <a>Public</a>
+    <a>Private</a>
+    <a>Sources</a>
+    <a>Forks</a>
+  </p> -->
+  <div class="panel-block">
+    <p class="control has-icons-left">
+      <input
+        class="input is-danger"
+        type="text"
+        placeholder="Search"
+        [(ngModel)]="search"
+        (keyup)="searchFun()"
+      />
+      <span class="icon is-left">
+        <i class="fas fa-search" aria-hidden="true"></i>
+      </span>
+    </p>
+  </div>
+  <ng-container *ngFor="let item of searchD$ | async">
+    <a class="panel-block is-active" (click)="setCurr(item)">
+      <span class="panel-icon">
+        <i class="fas fa-book" aria-hidden="true"></i>
+      </span>
+      {{ item.name }}
+    </a>
+  </ng-container>
+</article>
