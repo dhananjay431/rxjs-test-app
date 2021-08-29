@@ -1,1 +1,24 @@
 <p>menu2 works!</p>
+<div class="container is-max-desktop">
+  <div class="notification is-primary">
+    This container has a <code>max-width</code> of
+    <code>$desktop - $container-offset</code> on widescreen and fullhd.
+  </div>
+</div>
+<ngx-datatable
+  #firstTable
+  class=""
+  [columns]="columns"
+  [columnMode]="ColumnMode.force"
+  [headerHeight]="50"
+  [footerHeight]="50"
+  rowHeight="auto"
+  [limit]="10"
+  [rows]="rows"
+  [externalPaging]="true"
+  [count]="page.totalElements"
+  [offset]="page.pageNumber"
+  [limit]="page.size"
+  (page)="setPage($event)"
+>
+</ngx-datatable>

@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   constructor(private heroservice: HeroService) {}
   search: any = '';
 
-  searchArr$: any = this.heroservice.http(
+  searchArr$: any = this.heroservice.ht1(
     'https://jsonplaceholder.typicode.com/comments'
   );
   setCurr(item: any) {
@@ -46,10 +46,10 @@ export class HomeComponent implements OnInit {
   }
 
   ob1$: any = this.heroservice
-    .http('https://jsonplaceholder.typicode.com/posts')
+    .ht1('https://jsonplaceholder.typicode.com/posts')
     .pipe(shareReplay());
-  ob2$ = this.heroservice.http('https://jsonplaceholder.typicode.com/comments');
-  ob3$ = this.heroservice.http('https://jsonplaceholder.typicode.com/albums');
+  ob2$ = this.heroservice.ht1('https://jsonplaceholder.typicode.com/comments');
+  ob3$ = this.heroservice.ht1('https://jsonplaceholder.typicode.com/albums');
 
   show() {
     return this.ob1$.pipe(

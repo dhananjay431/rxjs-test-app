@@ -10,7 +10,7 @@ const time = 500;
 })
 export class TestComponent implements OnInit {
   constructor(private heroservice: HeroService) {}
-  ob1$ = this.heroservice.http('https://jsonplaceholder.typicode.com/users');
+  ob1$ = this.heroservice.ht1('https://jsonplaceholder.typicode.com/users');
   withTime$ = this.ob1$.pipe(
     map((d: any) => {
       return d.map((dd: any) => {
