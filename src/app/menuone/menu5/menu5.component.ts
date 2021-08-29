@@ -76,6 +76,8 @@ export class Menu5Component implements OnInit {
       .flatMap()
       .value();
 
-    this.data$ = this.getData(Object.assign({}, req));
+    this.data$ = this.getData(
+      Object.assign({}, that.heroservice.l().shuffle(req))
+    );
   }
 }
