@@ -12,40 +12,64 @@ import { formatCurrency } from '@angular/common';
 })
 export class Menu5Component implements OnInit {
   reqArr: any = {
+    posttest: [
+      'https://jsonplaceholder.typicode.com/posts',
+      {
+        title: 'dhananjay',
+        body: 'belhekar',
+        email: 'dhananjaybelhekar@gmail.com',
+        userId: 1,
+      },
+    ],
     posts: 'https://jsonplaceholder.typicode.com/posts',
     comments: 'https://jsonplaceholder.typicode.com/comments',
     albums: 'https://jsonplaceholder.typicode.com/albums',
     todos: 'https://jsonplaceholder.typicode.com/todos',
     users: 'https://jsonplaceholder.typicode.com/users',
+    users1: 'https://jsonplaceholder.typicode.com/users/1',
+    users2: 'https://jsonplaceholder.typicode.com/users/2',
+    users3: 'https://jsonplaceholder.typicode.com/users/3',
+    post: [
+      'https://jsonplaceholder.typicode.com/posts',
+      {
+        title: 'foo',
+        body: 'bar',
+        userId: 1,
+      },
+    ],
   };
   constructor(
     private menu5service: Menu5Service,
     private heroservice: HeroService
   ) {}
-  getData(reqArr: any) {
-    let that = this;
-    return of(123).pipe(
-      tap((d) => {
-        that.heroservice.j()('#loader').show();
-      }),
-      mergeMap((d) => {
-        return that.menu5service.getallData(reqArr);
-      }),
-      tap((d) => {
-        console.log('getAll=>', d);
-      }),
-      finalize(() => {
-        that.heroservice.j()('#loader').hide();
-      }) //
-    );
-  }
-  data$: any = this.getData(this.reqArr);
+
+  data$: any = this.menu5service.pageData(this.reqArr);
 
   ngOnInit(): void {
     let that = this;
   }
   changeData(data: any) {
+    let that = this;
     console.log('changeData=>', data);
+    let temp = [
+      'https://jsonplaceholder.typicode.com/posts',
+      'https://jsonplaceholder.typicode.com/comments',
+      'https://jsonplaceholder.typicode.com/albums',
+      'https://jsonplaceholder.typicode.com/todos',
+      'https://jsonplaceholder.typicode.com/users',
+      ,
+    ];
+    data = Object.assign(
+      {},
+      that.heroservice.l().shuffle(
+        that.heroservice
+          .l()
+          .chain(Array(Math.ceil(Math.random() * 10)).fill(temp))
+          .flatMap()
+          .value()
+      )
+    );
+    that.data$ = of(data);
     // let that = this;
     // id = Math.ceil(Math.random() * 10);
     // let user: any = that.menu5service.getpro({
@@ -70,14 +94,17 @@ export class Menu5Component implements OnInit {
       'https://jsonplaceholder.typicode.com/users',
     ];
 
-    let req = that.heroservice
-      .l()
-      .chain(Array(Math.ceil(Math.random() * 10)).fill(temp))
-      .flatMap()
-      .value();
-
-    this.data$ = this.getData(
-      Object.assign({}, that.heroservice.l().shuffle(req))
+    let req = Object.assign(
+      {},
+      that.heroservice.l().shuffle(
+        that.heroservice
+          .l()
+          .chain(Array(Math.ceil(Math.random() * 10)).fill(temp))
+          .flatMap()
+          .value()
+      )
     );
+
+    this.data$ = that.menu5service.pageData(req);
   }
 }

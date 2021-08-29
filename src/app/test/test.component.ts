@@ -23,7 +23,7 @@ export class TestComponent implements OnInit {
   );
   sub$: any = new Subject().pipe(debounceTime(time));
   withTime2$ = this.withTime$.pipe(
-    map((d) => {
+    map((d: any) => {
       return d.map((dd: any) => {
         dd.time = '_' + new Date().getTime();
         return dd;
@@ -32,7 +32,7 @@ export class TestComponent implements OnInit {
   );
   search: any = '';
   withTimeSearch$ = this.withTime$.pipe(
-    map((d) => {
+    map((d: any) => {
       return d.map((dd: any) => {
         dd.time = '_' + new Date().getTime();
         return dd;
@@ -67,7 +67,7 @@ export class TestComponent implements OnInit {
     that
       .subSearchFunction(that.search)
       .pipe(
-        map((d) => {
+        map((d: any) => {
           return d
             .filter((dd: any) => {
               return dd.flag == true;
@@ -84,7 +84,7 @@ export class TestComponent implements OnInit {
             });
         })
       )
-      .subscribe((resp) => {
+      .subscribe((resp: any) => {
         console.log('going to save =>', resp);
         that.search = '';
         that.sub$.next(that.search);

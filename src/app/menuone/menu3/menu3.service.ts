@@ -18,10 +18,10 @@ export class Menu3Service {
     return new Promise((rev, rej) => {
       ((d) => {
         d.subscribe(
-          (resp) => {
+          (resp: any) => {
             rev(resp);
           },
-          (err) => {
+          (err: any) => {
             rej(err);
           }
         );

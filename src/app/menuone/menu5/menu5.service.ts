@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { forkJoin } from 'rxjs';
+import { forkJoin, of } from 'rxjs';
+import { finalize, mergeMap, tap } from 'rxjs/operators';
 import { HeroService } from '../../hero.service';
 
 @Injectable({
@@ -12,7 +13,13 @@ export class Menu5Service {
     let that = this;
     let ajax: any = [];
     for (let i in reqArr) {
-      ajax[i] = that.ht.ht1(reqArr[i]);
+      debugger;
+
+      if (Array.isArray(reqArr[i])) {
+        ajax[i] = that.ht.ht1(reqArr[i][0], reqArr[i][1]);
+      } else {
+        ajax[i] = that.ht.ht1(reqArr[i]);
+      }
     }
     return ajax;
   }
@@ -45,5 +52,22 @@ export class Menu5Service {
     // });
     //return forkJoin([menu1, menu2, menu3, menu4, menu5, forkJoin(user)]);
     return forkJoin(menu1);
+  }
+  pageData(reqArr: any) {
+    let that = this;
+    return of(123).pipe(
+      tap((d) => {
+        that.ht.j()('#loader').show();
+      }),
+      mergeMap((d) => {
+        return that.getallData(reqArr);
+      }),
+      tap((d) => {
+        console.log('getAll=>', d);
+      }),
+      finalize(() => {
+        that.ht.j()('#loader').hide();
+      }) //
+    );
   }
 }
