@@ -13,8 +13,6 @@ export class Menu5Service {
     let that = this;
     let ajax: any = [];
     for (let i in reqArr) {
-      debugger;
-
       if (Array.isArray(reqArr[i])) {
         ajax[i] = that.ht.ht1(reqArr[i][0], reqArr[i][1]);
       } else {
@@ -55,17 +53,17 @@ export class Menu5Service {
   }
   pageData(reqArr: any) {
     let that = this;
+    let time: any = new Date().getTime();
     return of(123).pipe(
       tap((d) => {
+        console.log('start');
         that.ht.j()('#loader').show();
       }),
       mergeMap((d) => {
         return that.getallData(reqArr);
       }),
-      tap((d) => {
-        console.log('getAll=>', d);
-      }),
       finalize(() => {
+        console.log('end');
         that.ht.j()('#loader').hide();
       }) //
     );

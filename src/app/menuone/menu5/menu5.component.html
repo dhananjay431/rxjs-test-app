@@ -3,9 +3,11 @@
 <div *ngIf="data$ | async as data">
   <button (click)="changeData(data)">change Data</button>
   <button (click)="setData()">setData</button>
+  <button (click)="sub(save$, data)">Save</button>
+  <button (click)="sb$.next([save$, data])">sub$</button>
+
   <p>menu5 works!</p>
-  <pre>
+  <div>
     {{ data | json }}
-</pre
-  >
+  </div>
 </div>
